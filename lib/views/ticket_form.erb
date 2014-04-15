@@ -1,0 +1,34 @@
+<h1>Lets buy some tickets for <%= @exhibition.name %> </h1>
+
+<% if @errors %>
+<h3> Oh no! It appears you have some errors, heres a tip:</h3>
+
+<%= @errors %>
+<% end %> 
+
+<form method='post' action='/tickets/buy'>
+
+  <label>
+    <span class="form-label">First Name</span>
+    <input type='text' placeholder="First Name" name='first_name' value="<%= params[:first_name] %>">
+  </label>
+
+   <label>
+    <span class="form-label">Last Name</span>
+    <input type='text' placeholder="Last Name" name='last_name' value="<%= params[:last_name] %>">
+  </label>
+
+  <label>
+    <span class="form-label">Date</span>
+    <input type='date' placeholder="2014" name='date' value="<%= params[:date] %>">
+  </label>
+
+  <label>
+    <span class="form-label">Time</span>
+    <input type='time' placeholder="12:00" name='time' value="<%= params[:time] %>">
+  </label>
+
+  <input type="hidden" name="exhibition_id" value='<%= @exhibition.id %>'>
+  <button type='submit'>Submit</button>
+
+</form>

@@ -1,0 +1,9 @@
+<h1>Exhibitions at <%= @gallery["name"] %></h1>
+
+<% @exhibitions["exhibitions"].each do |exhibition| %>
+  
+  <h2><a href="/galleries/<%= @gallery["id"] %>/exhibition/<%= exhibition["id"] %>"><%= exhibition["name"] %></a></h2>
+  <p>Do you want to buy a ticket for this exhibition? if so click <a href="<%= exhibition['gallery_url'] + exhibition['url'] %>/tickets"  <strong>here</strong></a></p>
+
+<% end %>
+

@@ -1,0 +1,7 @@
+<h1><%= @exhibition.name %></h1>
+<h2><a href="<%= @exhibition.gallery_url %>"><%= @exhibition.gallery %></a></h2>
+
+<p>Entry fee: <%= @exhibition.entry_fee %></p>
+<p>Opens on: <%= @exhibition.opens_on %> until: <%= @exhibition.closes_on %></p>
+
+<a href="<%= @exhibition.ticket_url %>">Buy tickets</a>

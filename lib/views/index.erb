@@ -1,0 +1,10 @@
+<h1>Welcome to the new state</h1>
+<h2>Check out our super awesome galleries. oh yeaaaaahhhhh.</h2>
+
+
+<div>
+  <% @galleries["galleries"].each do |gallery| %>
+
+  <div class='gallery'><a href="<%= gallery["url"] %>"><%= gallery["name"]  %></a></div>
+  <% end %>
+</div>
