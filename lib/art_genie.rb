@@ -29,7 +29,6 @@ class ArtGenie < Sinatra::Base
 
   get '/galleries/:gallery_id/exhibition/:id' do
     @exhibition = Exhibition.new(gallery_api.get_exhibition(params["id"]))
-    # require 'pry'; binding.pry
     erb :exhibition
   end
 
@@ -37,7 +36,6 @@ class ArtGenie < Sinatra::Base
     exhibition_params = gallery_api.get_exhibition(params[:id])
     gallery_params = gallery_api.retrieve_a_gallery(params[:gallery_id])
     @exhibition = Exhibition.new({ "id" => exhibition_params["id"], "name" => exhibition_params["name"], "gallery" => gallery_params["name"], "gallery_url" => "galleries/#{gallery_params["id"]}", "entry_fee" => exhibition_params["entry_fee"], "opens_on" => exhibition_params["opens_on"], "closes_on" => exhibition_params["closes_on"] })
-    # require 'pry'; binding.pry
     erb :ticket_form
 
   end
