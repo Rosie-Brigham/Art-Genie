@@ -1,1 +1,13 @@
 <h2>Ticket purchased successfully</h2>
+
+
+
+
+<div>
+Oh no! you've purchased the wrong ticket by mistake? oops, thats awkward, why not try and get a refund. click here:
+</div>
+
+<form method="post" action='/tickets/<%= @ticket_id %>/refund'>
+  <input name="_method" type="hidden" value="delete" />
+  <button type='submit'> Refund </button>
+</form>

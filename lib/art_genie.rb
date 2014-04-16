@@ -5,16 +5,11 @@ require './lib/exhibition'
 require 'erubis'
 
 class ArtGenie < Sinatra::Base
+  set :method_override, true
 
   gallery_api = ArtsGalleryApi::Gallery.new
   ticket_api = ArtsGalleryApi::Ticket.new
-  # exhibition_params = gallery_api.get_exhibition(params[:id])
-  # gallery_params = gallery_api.retrieve_a_gallery(params[:gallery_id])
-  # @exhibition_object = Exhibition.new({ "id" => exhibition_params["id"], "name" => exhibition_params["name"], "gallery" => gallery_params["name"], "gallery_url" => "galleries/#{gallery_params["id"]}", "entry_fee" => exhibition_params["entry_fee"], "opens_on" => exhibition_params["opens_on"], "closes_on" => exhibition_params["closes_on"] })
-  # @exhibitions = gallery_api.get_gallery_exhibitions(params[:id])
-  # @exhibition_params = gallery_api.get_exhibition(params[:exhibition_id])
-  # @gallery_params = gallery_api.retrieve_a_gallery(params[:gallery_id])
-  
+
 
   set :erb, :escape_html => true
 
@@ -37,18 +32,13 @@ class ArtGenie < Sinatra::Base
 
   get '/galleries/:gallery_id/exhibition/:id' do
     @exhibition = Exhibition.new(gallery_api.get_exhibition(params["id"]))
-    # @exhibitions
     erb :exhibition
   end
 
   get '/galleries/:gallery_id/exhibitions/:id/tickets' do
     exhibition_params = gallery_api.get_exhibition(params[:id])
     gallery_params = gallery_api.retrieve_a_gallery(params[:gallery_id])
-    # @exhibition_params
-    # @gallery_params
     @exhibition = Exhibition.new({ "id" => exhibition_params["id"], "name" => exhibition_params["name"], "gallery" => gallery_params["name"], "gallery_url" => "galleries/#{gallery_params["id"]}", "entry_fee" => exhibition_params["entry_fee"], "opens_on" => exhibition_params["opens_on"], "closes_on" => exhibition_params["closes_on"] })
-    # @exhibition_object
-    # @exhibitions
     erb :ticket_form
 
   end
@@ -59,24 +49,21 @@ class ArtGenie < Sinatra::Base
     exhibition_id = params[:exhibition_id]
     response = ticket_api.create_a_ticket(name,exhibition_id,date_time)
     if response.parsed_response["id"]
-    redirect 'tickets/confirmation'
-      else
-        @errors = response.parsed_response
-        exhibition_params = gallery_api.get_exhibition(params[:exhibition_id])
-        gallery_params = gallery_api.retrieve_a_gallery(params[:gallery_id])
-        # @exhibition_params
-        # @gallery_params
-        @exhibition = Exhibition.new({ "id" => exhibition_params["id"], "name" => exhibition_params["name"], "gallery" => gallery_params["name"], "gallery_url" => "galleries/#{gallery_params["id"]}", "entry_fee" => exhibition_params["entry_fee"], "opens_on" => exhibition_params["opens_on"], "closes_on" => exhibition_params["closes_on"] })
-
-        # @exhibition_object
-        erb :ticket_form
-      end
-
-
-    
+      @ticket_id = response.parsed_response["id"]
+      erb :ticket_confirm
+    else
+      @errors = response.parsed_response
+      exhibition_params = gallery_api.get_exhibition(params[:exhibition_id])
+      gallery_params = gallery_api.retrieve_a_gallery(params[:gallery_id])
+      @exhibition = Exhibition.new({ "id" => exhibition_params["id"], "name" => exhibition_params["name"], "gallery" => gallery_params["name"], "gallery_url" => "galleries/#{gallery_params["id"]}", "entry_fee" => exhibition_params["entry_fee"], "opens_on" => exhibition_params["opens_on"], "closes_on" => exhibition_params["closes_on"] })
+      erb :ticket_form
+    end
   end
 
-  get '/tickets/confirmation' do
-    erb :ticket_confirm
+  delete '/tickets/:id/refund' do
+    ticket_api.delete_a_ticket(params[:id])
+    'ticket refunded successfully'
   end
+
+
 end

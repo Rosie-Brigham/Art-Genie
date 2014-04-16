@@ -1,9 +1,16 @@
 <h1>Exhibitions at <%= @gallery["name"] %></h1>
+<%= @exhibitions %>
+<% if @exhibitions["exhibitions"].empty? %>
+  <h2>I'm sorry, we don't have any exhibitions on at the moment, 
+    please check back at a later date</h2>
 
-<% @exhibitions["exhibitions"].each do |exhibition| %>
+<% else %><% @exhibitions["exhibitions"].each do |exhibition| %>
+
+
   
   <h2><a href="/galleries/<%= @gallery["id"] %>/exhibition/<%= exhibition["id"] %>"><%= exhibition["name"] %></a></h2>
   <p>Do you want to buy a ticket for this exhibition? if so click <a href="<%= exhibition['gallery_url'] + exhibition['url'] %>/tickets"  <strong>here</strong></a></p>
 
+<% end %>
 <% end %>
 
