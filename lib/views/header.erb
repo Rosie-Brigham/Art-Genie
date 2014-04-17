@@ -1,0 +1,77 @@
+<head>
+  <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+
+  <!-- Optional theme -->
+  <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css">
+
+  <!-- Latest compiled and minified JavaScript -->
+  <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+
+  <!-- jQuery via Google + local fallback, see h5bp.com -->
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+  <script>window.jQuery || document.write('<script src="js/jquery-1.7.1.min.js"><\/script>')</script>
+
+  <!-- Bootstrap jQuery Plugins, compiled and minified -->
+  <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+  <nav class="navbar navbar-default" role="navigation">
+    <div class="container-fluid">
+      <!-- Brand and toggle get grouped for better mobile display -->
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="/">The Art Genie</a>
+      </div>
+
+      <!-- Collect the nav links, forms, and other content for toggling -->
+      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <ul class="nav navbar-nav">
+          <!-- <li class="active"><a href="/">Galleries</li> -->
+          <!-- <li><a href="#">Link</a></li> -->
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Galleries <b class="caret"></b></a>
+            <ul class="dropdown-menu">
+
+              <% galleries.each do |gallery| %>
+              
+                <li><a href="<%= gallery["url"] %>"><%= gallery %></a></li>
+              
+              <% end %>
+            </ul> 
+          </li>
+        </ul>
+
+        <ul class="nav navbar-nav">
+          <!-- <li class="active"><a href="/">Galleries</li> -->
+          <!-- <li><a href="#">Link</a></li> -->
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Current Exhibitions <b class="caret"></b></a>
+            <ul class="dropdown-menu">
+
+              <% exhibitions.each do |exhibition| %>
+              
+                <li><a href="#"><%= exhibition%></a></li>
+              
+              <% end %>
+            </ul> 
+          </li>
+        </ul>
+
+        <form class="navbar-form navbar-right" role="search">
+          <div class="form-group">
+            <input type="text" class="form-control" placeholder="Search">
+          </div>
+          <button type="submit" class="btn btn-default">Submit</button>
+        </form>
+        <ul class="nav navbar-nav navbar-right">
+          <li><a href="#">Link</a></li>
+        </ul>
+      </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+  </nav>
+</body>

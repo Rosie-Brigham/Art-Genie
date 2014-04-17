@@ -6,15 +6,29 @@ require 'erubis'
 
 class ArtGenie < Sinatra::Base
   set :method_override, true
+  
+  def gallery_api
+    @gallery_api ||= ArtsGalleryApi::Gallery.new
+  end
+  def ticket_api
+    @ticket_api ||= ArtsGalleryApi::Ticket.new
+  end
 
-  gallery_api = ArtsGalleryApi::Gallery.new
-  ticket_api = ArtsGalleryApi::Ticket.new
+  helpers do
+    def galleries
+      @galleries ||= gallery_api.all["galleries"]
+    end
+
+    def exhibitions
+      @exhibition_list ||= get_exhibitions
+    end
+  end
 
 
-  set :erb, :escape_html => true
+  # set :erb, :escape_html => true
 
   get %r{\A(/galleries)\Z|\A/\Z} do
-    @galleries = gallery_api.all
+    
     erb :index
   end
 
@@ -63,6 +77,16 @@ class ArtGenie < Sinatra::Base
   delete '/tickets/:id/refund' do
     ticket_api.delete_a_ticket(params[:id])
     'ticket refunded successfully'
+  end
+
+  private
+
+  def get_exhibitions
+    all_gallery_exhibitions = galleries.collect do |hash|
+      gallery_api.get_gallery_exhibitions(hash["id"])["exhibitions"]
+    end
+    all_gallery_exhibitions.reject! { |exhibitions| exhibitions.empty? }
+    all_gallery_exhibitions.flatten!
   end
 
 

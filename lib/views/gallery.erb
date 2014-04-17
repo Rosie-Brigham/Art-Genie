@@ -1,10 +1,35 @@
-This is a page dedicated to this gallery:
+
+ 
+ <%= erb(:header, :layout => false) %> 
 
 
-<%= @gallery.name %>
-<%= @gallery.description %>
-<%= @gallery.address %>
-<%= @gallery.opening_hour %>
-<%= @gallery.closing_hour %>
 
-See exhibitions on at this gallery by click <a href="/galleries/<%= @gallery.id %>/exhibitions"><strong>here</strong></a>
+
+
+  <!-- === Slide 5 === -->
+  <div class="slide story" id="slide-5" data-slide="5">
+    <div class="container">
+      <div class="row title-row">
+        <div class="col-12 font-thin"><span class="font-semibold">All Aboute</span> <%= @gallery.name %></div>
+      </div><!-- /row -->
+      <div class="row line-row">
+        <div class="hr">&nbsp;</div>
+      </div><!-- /row -->
+      <div class="row subtitle-row">
+        <div class="col-sm-1 hidden-sm">&nbsp;</div>
+        <div class="col-12 col-sm-10 font-light">
+          
+          <div><%= @gallery.description %></div>
+          <div><%= @gallery.address %></div>
+          <div><%= @gallery.opening_hour %></div>
+          <div><%= @gallery.closing_hour %></div>
+
+          See exhibitions on at this gallery by click <a href="/galleries/<%= @gallery.id %>/exhibitions"><strong>here</strong></a>
+
+        </div>
+        <div class="col-sm-1 hidden-sm">&nbsp;</div>
+      </div><!-- /row -->
+    </div><!-- /container -->
+  </div><!-- /slide5 -->
+ </body>
+ </html>

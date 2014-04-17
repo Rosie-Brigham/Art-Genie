@@ -1,10 +1,76 @@
-<h1>Welcome to the new state</h1>
-<h2>Check out our super awesome galleries. oh yeaaaaahhhhh.</h2>
+<!DOCTYPE <html>
+<head lang="en">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  
+  <title>THE PEOPLE'S GALLERY</title> 
+  <meta name="description" content="BlackTie.co - Free Handsome Bootstrap Themes" />      
+  <meta name="keywords" content="themes, bootstrap, free, templates, bootstrap 3, freebie,">
+  <meta property="og:title" content="">
+
+  <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+  <link rel="stylesheet" href="fancybox/jquery.fancybox-v=2.1.5.css" type="text/css" media="screen">
+    <link rel="stylesheet" href="css/font-awesome.min.css" rel="stylesheet">
+  
+  <link rel="stylesheet" type="text/css" href="css/style.css">  
+  
+  <link href='http://fonts.googleapis.com/css?family=Titillium+Web:400,600,300,200&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+  
+  
+  <link rel="prefetch" href="images/zoom.png">
+    
+</head>
+<body>
 
 
-<div>
-  <% @galleries["galleries"].each do |gallery| %>
 
-  <div class='gallery'><a href="<%= gallery["url"] %>"><%= gallery["name"]  %></a></div>
-  <% end %>
-</div>
+<div class="slide story" id="slide-1" data-slide="1">
+    <div class="container">
+      <div id="home-row-1" class="row clearfix">
+        <div class="col-12">
+          <h1 class="font-semibold">
+            <strong>Welcome</strong> to the <span class="font-thin">new state</span></h1>
+          <br>
+          <br>
+        </div><!-- /col-12 -->
+      </div><!-- /row -->
+    </div><!-- /container -->
+  </div><!-- /slide1 -->
+
+  <!-- === Slide 5 === -->
+  <div class="slide story" id="slide-5" data-slide="5">
+    <div class="container">
+      <div class="row title-row">
+        <h2 class="font-thin">Checkout our <span class="font-semibold">the People's Galleries</span> in post revolutionary London</h2>
+        <div class="col-12 font-thin"><span class="font-semibold">Viva</span> La Revolution</div>
+      </div><!-- /row -->
+      <div class="row line-row">
+        <div class="hr">&nbsp;</div>
+      </div><!-- /row -->
+      <div class="row subtitle-row">
+        <div class="col-sm-1 hidden-sm">&nbsp;</div>
+        <div class="col-12 col-sm-10 font-light">
+          <div>
+          <% galleries.each do |gallery| %>
+
+          <spanclass='gallery'><a href="<%= gallery["url"] %>"><%= gallery["name"]  %></a>
+          </span>
+          <% end %>
+        </div>
+        </div>
+        <div class="col-sm-1 hidden-sm">&nbsp;</div>
+      </div><!-- /row -->
+      <div class="row content-row">
+
+        <div class="col-1 col-sm-1 hidden-sm">&nbsp;</div>
+      </div><!-- /row -->
+    </div><!-- /container -->
+  </div><!-- /slide5 -->
+  
+
+
+
+</body>
+</html>
+
+

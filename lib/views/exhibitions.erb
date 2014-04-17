@@ -1,5 +1,7 @@
+<%= erb(:header, :layout => false) %> 
+
 <h1>Exhibitions at <%= @gallery["name"] %></h1>
-<%= @exhibitions %>
+
 <% if @exhibitions["exhibitions"].empty? %>
   <h2>I'm sorry, we don't have any exhibitions on at the moment, 
     please check back at a later date</h2>
